@@ -58,16 +58,19 @@ public class SpringMultiConnectorApplication {
 				.solde(Math.random()*10000)
 				.creationDate(LocalDate.now())
 				.compteType(CompteType.COMPTE_COURANT)
+				.client(clients.get(0))
 				.build(),
 				Compte.builder()
 				.solde(Math.random()*10000)
 				.creationDate(LocalDate.now())
 				.compteType(CompteType.COMPTE_EPARGNE)
+				.client(clients.get(1))
 				.build(),
 				Compte.builder()
 				.solde(Math.random()*10000)
 				.creationDate(LocalDate.now())
 				.compteType(CompteType.COMPTE_COURANT)
+				.client(clients.get(1))
 				.build()
 			);
 

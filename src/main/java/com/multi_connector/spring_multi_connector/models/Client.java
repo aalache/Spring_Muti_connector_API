@@ -2,6 +2,10 @@ package com.multi_connector.spring_multi_connector.models;
 
 import java.util.Collection;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +28,7 @@ public class Client {
     private Long id;
     private String firstname;
     private String lastname;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client",cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnoreProperties("client")
     private Collection<Compte> comptes;
 }

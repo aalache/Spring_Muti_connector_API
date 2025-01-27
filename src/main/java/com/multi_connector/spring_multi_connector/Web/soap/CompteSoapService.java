@@ -1,4 +1,4 @@
-package com.multi_connector.spring_multi_connector.Web;
+package com.multi_connector.spring_multi_connector.Web.soap;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class CompteSoapService {
     }
 
     @WebMethod
-    public Compte save( Compte compte){
+    public Compte save(@WebParam Compte compte){
         return compteRepository.save(compte);
     }
 

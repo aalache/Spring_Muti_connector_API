@@ -1,8 +1,9 @@
-package com.multi_connector.spring_multi_connector.Web;
+package com.multi_connector.spring_multi_connector.Web.rest;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.multi_connector.spring_multi_connector.dao.CompteRepository;
 import com.multi_connector.spring_multi_connector.models.Compte;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 
-// @RestController
+@RestController
 @AllArgsConstructor
 @RequestMapping("/bank")
 public class CompteRestControllerApi {

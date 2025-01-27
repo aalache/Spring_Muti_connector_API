@@ -1,0 +1,50 @@
+type Query{
+    listeComptes:[CompteResponse]
+    getCompte(id:ID!):CompteResponse
+    # client
+    listeClients:[ClientResponse]
+    getClient(id:ID!):ClientResponse
+}
+
+type Mutation{
+    saveCompte(compte:CompteRequest):CompteResponse
+    updateCompte(id:ID!,compte:CompteRequest):CompteResponse
+    deleteCompte(id:ID!):String
+    # client
+    saveClient(client:ClientRequest):ClientResponse
+    updateClient(id:ID!,client:ClientRequest):ClientResponse
+    deleteClient(id:ID!):String
+}
+
+enum CompteType{
+    COMPTE_COURANT
+    COMPTE_EPARGNE
+}
+
+input ClientRequest{
+    id: ID
+    firstname:String
+    lastname:String
+}
+
+type ClientResponse{
+    id: ID
+    firstname:String
+    lastname:String
+}
+
+input CompteRequest{
+    id: ID
+    solde:Float
+    creationDate:String
+    compteType:CompteType
+    client:ClientRequest
+}
+
+type CompteResponse{
+    id: ID
+    solde:Float
+    creationDate:String
+    compteType:CompteType
+    client:ClientResponse
+}

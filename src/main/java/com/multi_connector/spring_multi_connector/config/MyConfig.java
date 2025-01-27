@@ -4,8 +4,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.multi_connector.spring_multi_connector.Web.CompteJaxRSApi;
-import com.multi_connector.spring_multi_connector.Web.CompteSoapService;
+import com.multi_connector.spring_multi_connector.Web.rest.CompteJaxRSApi;
+import com.multi_connector.spring_multi_connector.Web.soap.CompteSoapService;
 
 import jakarta.xml.ws.Endpoint;
 
