@@ -1,4 +1,4 @@
-package com.multi_connector.spring_multi_connector.Web.graphql;
+package com.multi_connector.spring_multi_connector.web.graphql;
 
 import java.util.List;
 

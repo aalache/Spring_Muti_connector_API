@@ -1,4 +1,4 @@
-package com.multi_connector.spring_multi_connector.Web.rest;
+package com.multi_connector.spring_multi_connector.web.rest;
 
 import java.util.List;
 

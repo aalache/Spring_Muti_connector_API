@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+option java_package = "com.multi_connector.spring_multi_connector.web.grpc.stubs";
+// import "google/protobuf/timestamp.proto";
+
+service Compte{
+    // Compte Crud operations
+    rpc getCompte(CompteRequest) returns(CompteResponse); // Unary Model
+    rpc listeComptes(CompteRequest) returns(stream CompteResponse); // Server Streaming Model
+    rpc saveCompte(CompteRequest) returns(CompteResponse); // Unary Model
+    rpc updateCompte(CompteRequest) returns(CompteResponse); // Unary Model
+    rpc deleteCompte(CompteRequest) returns(ResponseEntity); // Unary Model
+    
+}
+
+service Client{
+    // Client Crud operations
+    rpc getClient(ClientRequest) returns(ClientResponse); // Unary Model
+    rpc listeClients(ClientRequest) returns(stream ClientResponse); // Server Streaming Model
+    rpc saveClient(ClientRequest) returns(ClientResponse); // Unary Model
+    rpc updateClient(ClientRequest) returns(ClientResponse); // Unary Model
+    rpc deleteClient(ClientRequest) returns(ResponseEntity); // Unary Model
+}
+
+
+enum CompteType{
+    COMPTE_COURANT=0;
+    COMPTE_EPARGNE=1;
+}
+
+enum Status{
+    ACCEPTED = 0;
+    OK = 1;
+    REJECTED =2;
+    BAD_REQUEST = 3;
+}
+
+message ClientRequest{
+    int64 id = 1;
+    string firstname = 2;
+    string lastname = 3;
+}
+
+message ClientResponse{
+    int64 id = 1;
+    string firstname = 2;
+    string lastname = 3;
+}
+
+
+message CompteRequest{
+    int64 id = 1;
+    double solde = 2;
+    google.protobuf.Timestamp creationDate = 3;
+    CompteType compteType = 4;
+    ClientRequest client = 5;   
+}
+
+message CompteResponse {
+    int64 id = 1;
+    double solde = 2;
+    google.protobuf.Timestamp creationDate = 3;
+    CompteType compteType = 4;
+    ClientRequest client = 5;  
+}
+
+message ResponseEntity {
+    string message = 1;
+    Status status =2;
+}
+

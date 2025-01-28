@@ -1,4 +1,4 @@
-package com.multi_connector.spring_multi_connector.Web.soap;
+package com.multi_connector.spring_multi_connector.web.soap;
 
 import java.util.List;
 
