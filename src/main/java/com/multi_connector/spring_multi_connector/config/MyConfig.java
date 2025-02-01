@@ -41,7 +41,7 @@ public class MyConfig {
     }
 
     @Bean
-    public Server grpcServer(){
+    public Server grpcServerBean(){
         return ServerBuilder.forPort(5555)
         .addService(compteGrpcController)
         .build();

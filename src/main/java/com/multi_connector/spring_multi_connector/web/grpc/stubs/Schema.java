@@ -1823,19 +1823,16 @@ public final class Schema {
     double getSolde();
 
     /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-     * @return Whether the creationDate field is set.
-     */
-    boolean hasCreationDate();
-    /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+     * <code>string creationDate = 3;</code>
      * @return The creationDate.
      */
-    com.google.protobuf.Timestamp getCreationDate();
+    java.lang.String getCreationDate();
     /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+     * <code>string creationDate = 3;</code>
+     * @return The bytes for creationDate.
      */
-    com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder();
+    com.google.protobuf.ByteString
+        getCreationDateBytes();
 
     /**
      * <code>.CompteType compteType = 4;</code>
@@ -1876,6 +1873,7 @@ public final class Schema {
       super(builder);
     }
     private CompteRequest() {
+      creationDate_ = "";
       compteType_ = 0;
     }
 
@@ -1920,16 +1918,9 @@ public final class Schema {
               break;
             }
             case 26: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (creationDate_ != null) {
-                subBuilder = creationDate_.toBuilder();
-              }
-              creationDate_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(creationDate_);
-                creationDate_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              creationDate_ = s;
               break;
             }
             case 32: {
@@ -2004,26 +1995,39 @@ public final class Schema {
     }
 
     public static final int CREATIONDATE_FIELD_NUMBER = 3;
-    private com.google.protobuf.Timestamp creationDate_;
+    private volatile java.lang.Object creationDate_;
     /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-     * @return Whether the creationDate field is set.
-     */
-    public boolean hasCreationDate() {
-      return creationDate_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+     * <code>string creationDate = 3;</code>
      * @return The creationDate.
      */
-    public com.google.protobuf.Timestamp getCreationDate() {
-      return creationDate_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : creationDate_;
+    public java.lang.String getCreationDate() {
+      java.lang.Object ref = creationDate_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        creationDate_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+     * <code>string creationDate = 3;</code>
+     * @return The bytes for creationDate.
      */
-    public com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder() {
-      return getCreationDate();
+    public com.google.protobuf.ByteString
+        getCreationDateBytes() {
+      java.lang.Object ref = creationDate_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        creationDate_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int COMPTETYPE_FIELD_NUMBER = 4;
@@ -2088,8 +2092,8 @@ public final class Schema {
       if (solde_ != 0D) {
         output.writeDouble(2, solde_);
       }
-      if (creationDate_ != null) {
-        output.writeMessage(3, getCreationDate());
+      if (!getCreationDateBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, creationDate_);
       }
       if (compteType_ != com.multi_connector.spring_multi_connector.web.grpc.stubs.Schema.CompteType.COMPTE_COURANT.getNumber()) {
         output.writeEnum(4, compteType_);
@@ -2114,9 +2118,8 @@ public final class Schema {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(2, solde_);
       }
-      if (creationDate_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getCreationDate());
+      if (!getCreationDateBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, creationDate_);
       }
       if (compteType_ != com.multi_connector.spring_multi_connector.web.grpc.stubs.Schema.CompteType.COMPTE_COURANT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -2146,11 +2149,8 @@ public final class Schema {
       if (java.lang.Double.doubleToLongBits(getSolde())
           != java.lang.Double.doubleToLongBits(
               other.getSolde())) return false;
-      if (hasCreationDate() != other.hasCreationDate()) return false;
-      if (hasCreationDate()) {
-        if (!getCreationDate()
-            .equals(other.getCreationDate())) return false;
-      }
+      if (!getCreationDate()
+          .equals(other.getCreationDate())) return false;
       if (compteType_ != other.compteType_) return false;
       if (hasClient() != other.hasClient()) return false;
       if (hasClient()) {
@@ -2174,10 +2174,8 @@ public final class Schema {
       hash = (37 * hash) + SOLDE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getSolde()));
-      if (hasCreationDate()) {
-        hash = (37 * hash) + CREATIONDATE_FIELD_NUMBER;
-        hash = (53 * hash) + getCreationDate().hashCode();
-      }
+      hash = (37 * hash) + CREATIONDATE_FIELD_NUMBER;
+      hash = (53 * hash) + getCreationDate().hashCode();
       hash = (37 * hash) + COMPTETYPE_FIELD_NUMBER;
       hash = (53 * hash) + compteType_;
       if (hasClient()) {
@@ -2321,12 +2319,8 @@ public final class Schema {
 
         solde_ = 0D;
 
-        if (creationDateBuilder_ == null) {
-          creationDate_ = null;
-        } else {
-          creationDate_ = null;
-          creationDateBuilder_ = null;
-        }
+        creationDate_ = "";
+
         compteType_ = 0;
 
         if (clientBuilder_ == null) {
@@ -2363,11 +2357,7 @@ public final class Schema {
         com.multi_connector.spring_multi_connector.web.grpc.stubs.Schema.CompteRequest result = new com.multi_connector.spring_multi_connector.web.grpc.stubs.Schema.CompteRequest(this);
         result.id_ = id_;
         result.solde_ = solde_;
-        if (creationDateBuilder_ == null) {
-          result.creationDate_ = creationDate_;
-        } else {
-          result.creationDate_ = creationDateBuilder_.build();
-        }
+        result.creationDate_ = creationDate_;
         result.compteType_ = compteType_;
         if (clientBuilder_ == null) {
           result.client_ = client_;
@@ -2428,8 +2418,9 @@ public final class Schema {
         if (other.getSolde() != 0D) {
           setSolde(other.getSolde());
         }
-        if (other.hasCreationDate()) {
-          mergeCreationDate(other.getCreationDate());
+        if (!other.getCreationDate().isEmpty()) {
+          creationDate_ = other.creationDate_;
+          onChanged();
         }
         if (other.compteType_ != 0) {
           setCompteTypeValue(other.getCompteTypeValue());
@@ -2526,123 +2517,80 @@ public final class Schema {
         return this;
       }
 
-      private com.google.protobuf.Timestamp creationDate_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> creationDateBuilder_;
+      private java.lang.Object creationDate_ = "";
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-       * @return Whether the creationDate field is set.
-       */
-      public boolean hasCreationDate() {
-        return creationDateBuilder_ != null || creationDate_ != null;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
        * @return The creationDate.
        */
-      public com.google.protobuf.Timestamp getCreationDate() {
-        if (creationDateBuilder_ == null) {
-          return creationDate_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : creationDate_;
+      public java.lang.String getCreationDate() {
+        java.lang.Object ref = creationDate_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          creationDate_ = s;
+          return s;
         } else {
-          return creationDateBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
+       * @return The bytes for creationDate.
        */
-      public Builder setCreationDate(com.google.protobuf.Timestamp value) {
-        if (creationDateBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          creationDate_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getCreationDateBytes() {
+        java.lang.Object ref = creationDate_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          creationDate_ = b;
+          return b;
         } else {
-          creationDateBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
+       * @param value The creationDate to set.
+       * @return This builder for chaining.
        */
       public Builder setCreationDate(
-          com.google.protobuf.Timestamp.Builder builderForValue) {
-        if (creationDateBuilder_ == null) {
-          creationDate_ = builderForValue.build();
-          onChanged();
-        } else {
-          creationDateBuilder_.setMessage(builderForValue.build());
-        }
-
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        creationDate_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-       */
-      public Builder mergeCreationDate(com.google.protobuf.Timestamp value) {
-        if (creationDateBuilder_ == null) {
-          if (creationDate_ != null) {
-            creationDate_ =
-              com.google.protobuf.Timestamp.newBuilder(creationDate_).mergeFrom(value).buildPartial();
-          } else {
-            creationDate_ = value;
-          }
-          onChanged();
-        } else {
-          creationDateBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCreationDate() {
-        if (creationDateBuilder_ == null) {
-          creationDate_ = null;
-          onChanged();
-        } else {
-          creationDate_ = null;
-          creationDateBuilder_ = null;
-        }
-
+        
+        creationDate_ = getDefaultInstance().getCreationDate();
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
+       * @param value The bytes for creationDate to set.
+       * @return This builder for chaining.
        */
-      public com.google.protobuf.Timestamp.Builder getCreationDateBuilder() {
+      public Builder setCreationDateBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
+        creationDate_ = value;
         onChanged();
-        return getCreationDateFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-       */
-      public com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder() {
-        if (creationDateBuilder_ != null) {
-          return creationDateBuilder_.getMessageOrBuilder();
-        } else {
-          return creationDate_ == null ?
-              com.google.protobuf.Timestamp.getDefaultInstance() : creationDate_;
-        }
-      }
-      /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-          getCreationDateFieldBuilder() {
-        if (creationDateBuilder_ == null) {
-          creationDateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                  getCreationDate(),
-                  getParentForChildren(),
-                  isClean());
-          creationDate_ = null;
-        }
-        return creationDateBuilder_;
+        return this;
       }
 
       private int compteType_ = 0;
@@ -2885,19 +2833,16 @@ public final class Schema {
     double getSolde();
 
     /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-     * @return Whether the creationDate field is set.
-     */
-    boolean hasCreationDate();
-    /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+     * <code>string creationDate = 3;</code>
      * @return The creationDate.
      */
-    com.google.protobuf.Timestamp getCreationDate();
+    java.lang.String getCreationDate();
     /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+     * <code>string creationDate = 3;</code>
+     * @return The bytes for creationDate.
      */
-    com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder();
+    com.google.protobuf.ByteString
+        getCreationDateBytes();
 
     /**
      * <code>.CompteType compteType = 4;</code>
@@ -2938,6 +2883,7 @@ public final class Schema {
       super(builder);
     }
     private CompteResponse() {
+      creationDate_ = "";
       compteType_ = 0;
     }
 
@@ -2982,16 +2928,9 @@ public final class Schema {
               break;
             }
             case 26: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (creationDate_ != null) {
-                subBuilder = creationDate_.toBuilder();
-              }
-              creationDate_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(creationDate_);
-                creationDate_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              creationDate_ = s;
               break;
             }
             case 32: {
@@ -3066,26 +3005,39 @@ public final class Schema {
     }
 
     public static final int CREATIONDATE_FIELD_NUMBER = 3;
-    private com.google.protobuf.Timestamp creationDate_;
+    private volatile java.lang.Object creationDate_;
     /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-     * @return Whether the creationDate field is set.
-     */
-    public boolean hasCreationDate() {
-      return creationDate_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+     * <code>string creationDate = 3;</code>
      * @return The creationDate.
      */
-    public com.google.protobuf.Timestamp getCreationDate() {
-      return creationDate_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : creationDate_;
+    public java.lang.String getCreationDate() {
+      java.lang.Object ref = creationDate_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        creationDate_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+     * <code>string creationDate = 3;</code>
+     * @return The bytes for creationDate.
      */
-    public com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder() {
-      return getCreationDate();
+    public com.google.protobuf.ByteString
+        getCreationDateBytes() {
+      java.lang.Object ref = creationDate_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        creationDate_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int COMPTETYPE_FIELD_NUMBER = 4;
@@ -3150,8 +3102,8 @@ public final class Schema {
       if (solde_ != 0D) {
         output.writeDouble(2, solde_);
       }
-      if (creationDate_ != null) {
-        output.writeMessage(3, getCreationDate());
+      if (!getCreationDateBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, creationDate_);
       }
       if (compteType_ != com.multi_connector.spring_multi_connector.web.grpc.stubs.Schema.CompteType.COMPTE_COURANT.getNumber()) {
         output.writeEnum(4, compteType_);
@@ -3176,9 +3128,8 @@ public final class Schema {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(2, solde_);
       }
-      if (creationDate_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getCreationDate());
+      if (!getCreationDateBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, creationDate_);
       }
       if (compteType_ != com.multi_connector.spring_multi_connector.web.grpc.stubs.Schema.CompteType.COMPTE_COURANT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -3208,11 +3159,8 @@ public final class Schema {
       if (java.lang.Double.doubleToLongBits(getSolde())
           != java.lang.Double.doubleToLongBits(
               other.getSolde())) return false;
-      if (hasCreationDate() != other.hasCreationDate()) return false;
-      if (hasCreationDate()) {
-        if (!getCreationDate()
-            .equals(other.getCreationDate())) return false;
-      }
+      if (!getCreationDate()
+          .equals(other.getCreationDate())) return false;
       if (compteType_ != other.compteType_) return false;
       if (hasClient() != other.hasClient()) return false;
       if (hasClient()) {
@@ -3236,10 +3184,8 @@ public final class Schema {
       hash = (37 * hash) + SOLDE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getSolde()));
-      if (hasCreationDate()) {
-        hash = (37 * hash) + CREATIONDATE_FIELD_NUMBER;
-        hash = (53 * hash) + getCreationDate().hashCode();
-      }
+      hash = (37 * hash) + CREATIONDATE_FIELD_NUMBER;
+      hash = (53 * hash) + getCreationDate().hashCode();
       hash = (37 * hash) + COMPTETYPE_FIELD_NUMBER;
       hash = (53 * hash) + compteType_;
       if (hasClient()) {
@@ -3383,12 +3329,8 @@ public final class Schema {
 
         solde_ = 0D;
 
-        if (creationDateBuilder_ == null) {
-          creationDate_ = null;
-        } else {
-          creationDate_ = null;
-          creationDateBuilder_ = null;
-        }
+        creationDate_ = "";
+
         compteType_ = 0;
 
         if (clientBuilder_ == null) {
@@ -3425,11 +3367,7 @@ public final class Schema {
         com.multi_connector.spring_multi_connector.web.grpc.stubs.Schema.CompteResponse result = new com.multi_connector.spring_multi_connector.web.grpc.stubs.Schema.CompteResponse(this);
         result.id_ = id_;
         result.solde_ = solde_;
-        if (creationDateBuilder_ == null) {
-          result.creationDate_ = creationDate_;
-        } else {
-          result.creationDate_ = creationDateBuilder_.build();
-        }
+        result.creationDate_ = creationDate_;
         result.compteType_ = compteType_;
         if (clientBuilder_ == null) {
           result.client_ = client_;
@@ -3490,8 +3428,9 @@ public final class Schema {
         if (other.getSolde() != 0D) {
           setSolde(other.getSolde());
         }
-        if (other.hasCreationDate()) {
-          mergeCreationDate(other.getCreationDate());
+        if (!other.getCreationDate().isEmpty()) {
+          creationDate_ = other.creationDate_;
+          onChanged();
         }
         if (other.compteType_ != 0) {
           setCompteTypeValue(other.getCompteTypeValue());
@@ -3588,123 +3527,80 @@ public final class Schema {
         return this;
       }
 
-      private com.google.protobuf.Timestamp creationDate_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> creationDateBuilder_;
+      private java.lang.Object creationDate_ = "";
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-       * @return Whether the creationDate field is set.
-       */
-      public boolean hasCreationDate() {
-        return creationDateBuilder_ != null || creationDate_ != null;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
        * @return The creationDate.
        */
-      public com.google.protobuf.Timestamp getCreationDate() {
-        if (creationDateBuilder_ == null) {
-          return creationDate_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : creationDate_;
+      public java.lang.String getCreationDate() {
+        java.lang.Object ref = creationDate_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          creationDate_ = s;
+          return s;
         } else {
-          return creationDateBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
+       * @return The bytes for creationDate.
        */
-      public Builder setCreationDate(com.google.protobuf.Timestamp value) {
-        if (creationDateBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          creationDate_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getCreationDateBytes() {
+        java.lang.Object ref = creationDate_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          creationDate_ = b;
+          return b;
         } else {
-          creationDateBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
+       * @param value The creationDate to set.
+       * @return This builder for chaining.
        */
       public Builder setCreationDate(
-          com.google.protobuf.Timestamp.Builder builderForValue) {
-        if (creationDateBuilder_ == null) {
-          creationDate_ = builderForValue.build();
-          onChanged();
-        } else {
-          creationDateBuilder_.setMessage(builderForValue.build());
-        }
-
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        creationDate_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-       */
-      public Builder mergeCreationDate(com.google.protobuf.Timestamp value) {
-        if (creationDateBuilder_ == null) {
-          if (creationDate_ != null) {
-            creationDate_ =
-              com.google.protobuf.Timestamp.newBuilder(creationDate_).mergeFrom(value).buildPartial();
-          } else {
-            creationDate_ = value;
-          }
-          onChanged();
-        } else {
-          creationDateBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCreationDate() {
-        if (creationDateBuilder_ == null) {
-          creationDate_ = null;
-          onChanged();
-        } else {
-          creationDate_ = null;
-          creationDateBuilder_ = null;
-        }
-
+        
+        creationDate_ = getDefaultInstance().getCreationDate();
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
+       * <code>string creationDate = 3;</code>
+       * @param value The bytes for creationDate to set.
+       * @return This builder for chaining.
        */
-      public com.google.protobuf.Timestamp.Builder getCreationDateBuilder() {
+      public Builder setCreationDateBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
+        creationDate_ = value;
         onChanged();
-        return getCreationDateFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-       */
-      public com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder() {
-        if (creationDateBuilder_ != null) {
-          return creationDateBuilder_.getMessageOrBuilder();
-        } else {
-          return creationDate_ == null ?
-              com.google.protobuf.Timestamp.getDefaultInstance() : creationDate_;
-        }
-      }
-      /**
-       * <code>.google.protobuf.Timestamp creationDate = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-          getCreationDateFieldBuilder() {
-        if (creationDateBuilder_ == null) {
-          creationDateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                  getCreationDate(),
-                  getParentForChildren(),
-                  isClean());
-          creationDate_ = null;
-        }
-        return creationDateBuilder_;
+        return this;
       }
 
       private int compteType_ = 0;
@@ -4635,43 +4531,40 @@ public final class Schema {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014schema.proto\032\037google/protobuf/timestam" +
-      "p.proto\"@\n\rClientRequest\022\n\n\002id\030\001 \001(\003\022\021\n\t" +
-      "firstname\030\002 \001(\t\022\020\n\010lastname\030\003 \001(\t\"A\n\016Cli" +
-      "entResponse\022\n\n\002id\030\001 \001(\003\022\021\n\tfirstname\030\002 \001" +
-      "(\t\022\020\n\010lastname\030\003 \001(\t\"\235\001\n\rCompteRequest\022\n" +
-      "\n\002id\030\001 \001(\003\022\r\n\005solde\030\002 \001(\001\0220\n\014creationDat" +
-      "e\030\003 \001(\0132\032.google.protobuf.Timestamp\022\037\n\nc" +
-      "ompteType\030\004 \001(\0162\013.CompteType\022\036\n\006client\030\005" +
-      " \001(\0132\016.ClientRequest\"\236\001\n\016CompteResponse\022" +
-      "\n\n\002id\030\001 \001(\003\022\r\n\005solde\030\002 \001(\001\0220\n\014creationDa" +
-      "te\030\003 \001(\0132\032.google.protobuf.Timestamp\022\037\n\n" +
-      "compteType\030\004 \001(\0162\013.CompteType\022\036\n\006client\030" +
-      "\005 \001(\0132\016.ClientRequest\":\n\016ResponseEntity\022" +
-      "\017\n\007message\030\001 \001(\t\022\027\n\006status\030\002 \001(\0162\007.Statu" +
-      "s*4\n\nCompteType\022\022\n\016COMPTE_COURANT\020\000\022\022\n\016C" +
-      "OMPTE_EPARGNE\020\001*=\n\006Status\022\014\n\010ACCEPTED\020\000\022" +
-      "\006\n\002OK\020\001\022\014\n\010REJECTED\020\002\022\017\n\013BAD_REQUEST\020\0032\372" +
-      "\001\n\006Compte\022,\n\tgetCompte\022\016.CompteRequest\032\017" +
-      ".CompteResponse\0221\n\014listeComptes\022\016.Compte" +
-      "Request\032\017.CompteResponse0\001\022-\n\nsaveCompte" +
-      "\022\016.CompteRequest\032\017.CompteResponse\022/\n\014upd" +
-      "ateCompte\022\016.CompteRequest\032\017.CompteRespon" +
-      "se\022/\n\014deleteCompte\022\016.CompteRequest\032\017.Res" +
-      "ponseEntity2\372\001\n\006Client\022,\n\tgetClient\022\016.Cl" +
-      "ientRequest\032\017.ClientResponse\0221\n\014listeCli" +
-      "ents\022\016.ClientRequest\032\017.ClientResponse0\001\022" +
-      "-\n\nsaveClient\022\016.ClientRequest\032\017.ClientRe" +
-      "sponse\022/\n\014updateClient\022\016.ClientRequest\032\017" +
-      ".ClientResponse\022/\n\014deleteClient\022\016.Client" +
-      "Request\032\017.ResponseEntityB;\n9com.multi_co" +
-      "nnector.spring_multi_connector.web.grpc." +
-      "stubsb\006proto3"
+      "\n\014schema.proto\"@\n\rClientRequest\022\n\n\002id\030\001 " +
+      "\001(\003\022\021\n\tfirstname\030\002 \001(\t\022\020\n\010lastname\030\003 \001(\t" +
+      "\"A\n\016ClientResponse\022\n\n\002id\030\001 \001(\003\022\021\n\tfirstn" +
+      "ame\030\002 \001(\t\022\020\n\010lastname\030\003 \001(\t\"\201\001\n\rCompteRe" +
+      "quest\022\n\n\002id\030\001 \001(\003\022\r\n\005solde\030\002 \001(\001\022\024\n\014crea" +
+      "tionDate\030\003 \001(\t\022\037\n\ncompteType\030\004 \001(\0162\013.Com" +
+      "pteType\022\036\n\006client\030\005 \001(\0132\016.ClientRequest\"" +
+      "\202\001\n\016CompteResponse\022\n\n\002id\030\001 \001(\003\022\r\n\005solde\030" +
+      "\002 \001(\001\022\024\n\014creationDate\030\003 \001(\t\022\037\n\ncompteTyp" +
+      "e\030\004 \001(\0162\013.CompteType\022\036\n\006client\030\005 \001(\0132\016.C" +
+      "lientRequest\":\n\016ResponseEntity\022\017\n\007messag" +
+      "e\030\001 \001(\t\022\027\n\006status\030\002 \001(\0162\007.Status*4\n\nComp" +
+      "teType\022\022\n\016COMPTE_COURANT\020\000\022\022\n\016COMPTE_EPA" +
+      "RGNE\020\001*=\n\006Status\022\014\n\010ACCEPTED\020\000\022\006\n\002OK\020\001\022\014" +
+      "\n\010REJECTED\020\002\022\017\n\013BAD_REQUEST\020\0032\372\001\n\006Compte" +
+      "\022,\n\tgetCompte\022\016.CompteRequest\032\017.CompteRe" +
+      "sponse\0221\n\014listeComptes\022\016.CompteRequest\032\017" +
+      ".CompteResponse0\001\022-\n\nsaveCompte\022\016.Compte" +
+      "Request\032\017.CompteResponse\022/\n\014updateCompte" +
+      "\022\016.CompteRequest\032\017.CompteResponse\022/\n\014del" +
+      "eteCompte\022\016.CompteRequest\032\017.ResponseEnti" +
+      "ty2\372\001\n\006Client\022,\n\tgetClient\022\016.ClientReque" +
+      "st\032\017.ClientResponse\0221\n\014listeClients\022\016.Cl" +
+      "ientRequest\032\017.ClientResponse0\001\022-\n\nsaveCl" +
+      "ient\022\016.ClientRequest\032\017.ClientResponse\022/\n" +
+      "\014updateClient\022\016.ClientRequest\032\017.ClientRe" +
+      "sponse\022/\n\014deleteClient\022\016.ClientRequest\032\017" +
+      ".ResponseEntityB;\n9com.multi_connector.s" +
+      "pring_multi_connector.web.grpc.stubsb\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf.TimestampProto.getDescriptor(),
         });
     internal_static_ClientRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -4703,7 +4596,6 @@ public final class Schema {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ResponseEntity_descriptor,
         new java.lang.String[] { "Message", "Status", });
-    com.google.protobuf.TimestampProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

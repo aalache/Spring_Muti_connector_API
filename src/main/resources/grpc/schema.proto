@@ -51,7 +51,7 @@ message ClientResponse{
 message CompteRequest{
     int64 id = 1;
     double solde = 2;
-    google.protobuf.Timestamp creationDate = 3;
+    string creationDate = 3;
     CompteType compteType = 4;
     ClientRequest client = 5;   
 }
@@ -59,7 +59,7 @@ message CompteRequest{
 message CompteResponse {
     int64 id = 1;
     double solde = 2;
-    google.protobuf.Timestamp creationDate = 3;
+    string creationDate = 3;
     CompteType compteType = 4;
     ClientRequest client = 5;  
 }
